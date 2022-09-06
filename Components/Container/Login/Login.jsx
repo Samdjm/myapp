@@ -1,18 +1,66 @@
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function Login() {
-  //Etape 1: Les variables d'état pour les inputs et les erreurs:
-  const [emailInput, setEmailInput] = useState("");
-  const [emailerror, setEmailError] = useState("");
+  const emailFromCookie = "sam@sam.com";
+  //Etape 1: Les variables d'états pour les inputs et les erreurs:
+  const [emailInput, setEmailInput] = useState(emailFromCookie);
+  const [emailError, setEmailError] = useState("");
 
   const [passwordInput, setPasswordInput] = useState("");
-  const [passworderror, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  //Two way binding: Lier dans les deux sens
+  //Etape 2: Créer les handle, fonctions qui modifient les variables avec les entrées de l'utilisateur:
+  function handleEmail(text) {
+    setEmailInput(text);
+    setEmailError("");
+  }
+
+  function handlePassword(value) {
+    setPasswordInput(value);
+    setPasswordError("");
+  }
+
+  //Etape 3: La fonction qui valide le formulaire:
+  function login() {
+    //Tester les entrées de l'utilisateur:
+    if (emailInput.includes("@") && passwordInput.length >= 6) {
+      //Envoyer les données a la backend
+      alert("Inscription réussie! email: " + emailInput);
+    } else {
+      setEmailError(!emailInput.includes("@") ? "Email incorrect!" : "");
+      setPasswordError(passwordInput.length < 6 ? "Mot de passe trop court!" : "");
+      setPasswordInput("");
+    }
+  }
+
+  function checkEmailError() {
+    setEmailError(!emailInput.includes("@") ? "Email incorrect!" : "");
+  }
+
+  //Etape 4: Ajouter les composants et de les lier avec les variables et les fonctions
+  //Two Way Binding: liaison dans les deux sens
   return (
     <View>
-      <Text>Login Form</Text>
+      <TextInput
+        placeholder='Email'
+        onChangeText={handleEmail}
+        value={emailInput}
+        onBlur={checkEmailError}
+      />
+      <Text>{emailError}</Text>
+
+      <TextInput
+        placeholder='Mot de passe'
+        onChangeText={handlePassword}
+        secureTextEntry
+        value={passwordInput}
+      />
+      <Text>{passwordError}</Text>
+
+      <TouchableOpacity onPress={login}>
+        <Text>Se connecter</Text>
+      </TouchableOpacity>
     </View>
   );
 }
