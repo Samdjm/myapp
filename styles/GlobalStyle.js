@@ -4,8 +4,8 @@ export const globalStyle = {
     lightColor: "whitesmoke",
   },
   fonstSize: {
-    xs: 20,
-    md: 30,
+    xs: 18,
+    md: 25,
     xl: 40,
   },
 };

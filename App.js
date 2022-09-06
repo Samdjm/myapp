@@ -1,22 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import Counter from "./Components/Container/Counter";
 import Auth from "./Components/Pages/Auth/Auth";
 import Profil from "./Components/Pages/Profil/Profil";
 export default function App() {
   const [user, setUser] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
   return (
     <View style={styles.container}>
-      {isVisible ? <Counter /> : null}
-      <Text
-        onPress={() => {
-          setIsVisible(!isVisible);
-        }}
-      >
-        Show/Hide
-      </Text>
       {user ? <Profil /> : <Auth />}
       <StatusBar style='auto' />
     </View>

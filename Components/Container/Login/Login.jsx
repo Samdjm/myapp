@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import Button from "../../UI/Button/Button";
+import InputWithError from "../../UI/InputWithError/InputWithError";
 
 export default function Login() {
   const emailFromCookie = "sam@sam.com";
@@ -42,25 +44,24 @@ export default function Login() {
   //Two Way Binding: liaison dans les deux sens
   return (
     <View>
-      <TextInput
-        placeholder='Email'
-        onChangeText={handleEmail}
-        value={emailInput}
-        onBlur={checkEmailError}
+      <InputWithError
+        holder='Email'
+        valeur={emailInput}
+        action={handleEmail}
+        errorMessage={emailError}
+        type='email-address'
       />
-      <Text>{emailError}</Text>
 
-      <TextInput
-        placeholder='Mot de passe'
-        onChangeText={handlePassword}
-        secureTextEntry
-        value={passwordInput}
+      <InputWithError
+        holder='Mot de passe'
+        valeur={passwordInput}
+        action={handlePassword}
+        errorMessage={passwordError}
+        type='default'
+        isPassword
       />
-      <Text>{passwordError}</Text>
 
-      <TouchableOpacity onPress={login}>
-        <Text>Se connecter</Text>
-      </TouchableOpacity>
+      <Button label='Se connecter' action={login} />
     </View>
   );
 }

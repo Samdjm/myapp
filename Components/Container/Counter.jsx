@@ -13,6 +13,7 @@ export default function Counter() {
   useEffect(() => {
     console.log("Mounted in dom");
     return () => {
+      //Fonction clean up
       console.log("Unmounted from DOM");
     };
   }, [count]);
