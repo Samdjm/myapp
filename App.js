@@ -26,3 +26,10 @@ const styles = StyleSheet.create({
 //true: 1,3, 1000, 'dfdfd', {name:"test"}, [], ['sdfsd']
 
 //HOC: High Order Component
+
+// A voire:
+//Formik et Yup
+//Firebase
+//Nextjs
+
+//Docker
