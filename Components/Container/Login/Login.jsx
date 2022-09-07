@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import Button from "../../UI/Button/Button";
 import InputWithError from "../../UI/InputWithError/InputWithError";
-
+import { AntDesign } from "@expo/vector-icons";
+import { globalStyle } from "../../../styles/GlobalStyle";
 export default function Login() {
   const emailFromCookie = "sam@sam.com";
   //Etape 1: Les variables d'états pour les inputs et les erreurs:
@@ -43,7 +44,7 @@ export default function Login() {
   //Etape 4: Ajouter les composants et de les lier avec les variables et les fonctions
   //Two Way Binding: liaison dans les deux sens
   return (
-    <View>
+    <View style={{ width: "100%" }}>
       <InputWithError
         holder='Email'
         valeur={emailInput}
@@ -61,7 +62,9 @@ export default function Login() {
         isPassword
       />
 
-      <Button label='Se connecter' action={login} />
+      <Button label='Se connecter' action={login}>
+        <AntDesign name='login' size={24} color={globalStyle.color.lightColor} />
+      </Button>
     </View>
   );
 }
