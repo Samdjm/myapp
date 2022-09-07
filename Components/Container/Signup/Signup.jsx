@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Text, View } from "react-native";
 import InputWithError from "../../UI/InputWithError/InputWithError";
 import Button from "../../UI/Button/Button";
+import { UserContext } from "../../../contexts/UserContext";
 export default function Signup() {
+  const context = useContext(UserContext);
+
   //Etape 1: Les variables d'états pour les inputs et les erreurs:
   const [emailInput, setEmailInput] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -46,7 +49,9 @@ export default function Signup() {
       confirmPasswordInput === passwordInput
     ) {
       //Envoyer les données a la backend
-      alert("Inscription reussie. Email: " + emailInput);
+      //Recu JWT token
+      //Decode JWT: {uid:xxxx, email:xxxx@xxx.com, username:xxxx, avatar:xxxx.png}
+      context.setUtilisateur({ email: emailInput, username: usernameInput });
     } else {
       setEmailError(!emailInput.includes("@") ? "Email incorrect" : "");
 

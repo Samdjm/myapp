@@ -3,13 +3,17 @@ import { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Auth from "./Components/Pages/Auth/Auth";
 import Profil from "./Components/Pages/Profil/Profil";
+import { UserContext } from "./contexts/UserContext";
 export default function App() {
   const [user, setUser] = useState(null);
+
   return (
-    <View style={styles.container}>
-      {user ? <Profil /> : <Auth />}
-      <StatusBar style='auto' />
-    </View>
+    <UserContext.Provider value={{ utilisateur: user, setUtilisateur: setUser }}>
+      <View style={styles.container}>
+        {user ? <Profil /> : <Auth />}
+        <StatusBar style='auto' />
+      </View>
+    </UserContext.Provider>
   );
 }
 //HOC: HIGH ORDER COMPONENTS

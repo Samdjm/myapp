@@ -4,7 +4,8 @@ import Login from "../../Container/Login/Login";
 import Signup from "../../Container/Signup/Signup";
 import Card from "../../HOC/Card/Card";
 
-export default function Auth() {
+export default function Auth(props) {
+  console.log(props);
   const [isLogin, setIsLogin] = useState(true);
 
   function toggleIsLogin() {
@@ -17,7 +18,7 @@ export default function Auth() {
         title='Bienvenue!'
         content={isLogin ? "Veuillez vous connecter" : "Veuillez vous inscrire"}
       >
-        {isLogin ? <Login /> : <Signup />}
+        {isLogin ? <Login /> : <Signup utilisateur={props.user} />}
         <TouchableOpacity onPress={toggleIsLogin}>
           <Text style={styles.link}>
             {isLogin
