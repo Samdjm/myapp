@@ -5,7 +5,8 @@ import { styles } from "./ProfilStyle";
 import defaultAvatar from "../../../assets/default_avatar.png";
 import { MaterialIcons } from "@expo/vector-icons";
 import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
-const Profil = () => {
+const Profil = (props) => {
+  console.log(props);
   const { utilisateur: user, setUtilisateur } = useContext(UserContext);
   // const size = useWindowDimensions();
   // console.log(size);
@@ -20,6 +21,10 @@ const Profil = () => {
     }
   }
 
+  function goCam() {
+    props.navigation.push("camera");
+  }
+
   return (
     <View>
       <View>
@@ -31,7 +36,7 @@ const Profil = () => {
           <TouchableOpacity onPress={pickImage}>
             <MaterialIcons name='photo-library' size={50} color='black' />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={goCam}>
             <MaterialIcons name='camera-alt' size={50} color='black' />
           </TouchableOpacity>
         </View>

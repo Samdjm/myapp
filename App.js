@@ -1,8 +1,9 @@
+import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Auth from "./Components/Pages/Auth/Auth";
-import Profil from "./Components/Pages/Profil/Profil";
+import ProfilStack from "./Components/Stacks/ProfilStack";
 import { UserContext } from "./contexts/UserContext";
 export default function App() {
   const fauxUser = { email: "john@doe.com", username: "John" };
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <UserContext.Provider value={{ utilisateur: user, setUtilisateur: setUser }}>
       <View style={styles.container}>
-        {user ? <Profil /> : <Auth />}
+        <NavigationContainer>{user ? <ProfilStack /> : <Auth />}</NavigationContainer>
         <StatusBar style='auto' />
       </View>
     </UserContext.Provider>
@@ -21,7 +22,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50,
   },
   text: {
     fontSize: 50,
