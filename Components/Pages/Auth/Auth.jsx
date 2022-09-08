@@ -18,7 +18,7 @@ export default function Auth(props) {
         title='Bienvenue!'
         content={isLogin ? "Veuillez vous connecter" : "Veuillez vous inscrire"}
       >
-        {isLogin ? <Login /> : <Signup utilisateur={props.user} />}
+        {isLogin ? <Login /> : <Signup />}
         <TouchableOpacity onPress={toggleIsLogin}>
           <Text style={styles.link}>
             {isLogin

@@ -1,20 +1,50 @@
 import { useContext } from "react";
-import { Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { UserContext } from "../../../contexts/UserContext";
 import { styles } from "./ProfilStyle";
+import defaultAvatar from "../../../assets/default_avatar.png";
+import { MaterialIcons } from "@expo/vector-icons";
+import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 const Profil = () => {
-  const { utilisateur: user } = useContext(UserContext);
+  const { utilisateur: user, setUtilisateur } = useContext(UserContext);
+  // const size = useWindowDimensions();
+  // console.log(size);
+  async function pickImage() {
+    let image = await launchImageLibraryAsync({
+      mediaTypes: MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+    if (!image.cancelled) {
+      setUtilisateur({ ...user, avatar: image });
+    }
+  }
 
   return (
     <View>
+      <View>
+        <Image
+          style={[{ width: "100%", height: 300, resizeMode: "contain" }, styles.avatar]}
+          source={user.avatar ? user.avatar : defaultAvatar}
+        />
+        <View style={styles.iconsContainer}>
+          <TouchableOpacity onPress={pickImage}>
+            <MaterialIcons name='photo-library' size={50} color='black' />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <MaterialIcons name='camera-alt' size={50} color='black' />
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.infosContainer}>
         <View style={styles.infoContainer}>
-          <Text style={styles.label}>Email</Text>
+          <Text style={styles.label}>Email:</Text>
           <Text style={styles.info}>{user.email}</Text>
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={styles.label}>Pseudo</Text>
+          <Text style={styles.label}>Pseudo:</Text>
           <Text style={styles.info}>{user.username}</Text>
         </View>
 
