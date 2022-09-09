@@ -13,7 +13,9 @@ const EditInfos = (props) => {
   const [usernameInput, setUsernameInput] = useState(utilisateur.username);
   const [usernameError, setUsernameError] = useState("");
 
-  const [descriptionInput, setDescriptionInput] = useState(utilisateur.description);
+  const [descriptionInput, setDescriptionInput] = useState(
+    utilisateur.description ? utilisateur.description : ""
+  );
   const [descriptionError, setDescriptionError] = useState("");
 
   //Etape 2: Créer les handle, fonctions qui modifient les variables avec les entrées de l'utilisateur:

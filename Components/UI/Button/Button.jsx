@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     margin: 10,
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
   },
   label: {
     textAlign: "center",
