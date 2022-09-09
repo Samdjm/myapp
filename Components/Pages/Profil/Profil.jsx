@@ -5,6 +5,7 @@ import { styles } from "./ProfilStyle";
 import defaultAvatar from "../../../assets/default_avatar.png";
 import { MaterialIcons } from "@expo/vector-icons";
 import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
+import Button from "../../UI/Button/Button";
 const Profil = (props) => {
   console.log(props);
   const { utilisateur: user, setUtilisateur } = useContext(UserContext);
@@ -23,6 +24,10 @@ const Profil = (props) => {
 
   function goCam() {
     props.navigation.push("camera");
+  }
+
+  function goEditInfos() {
+    props.navigation.push("editInfos");
   }
 
   return (
@@ -59,6 +64,8 @@ const Profil = (props) => {
             {user.description ? user.description : "Veuillez entrer une description..."}
           </Text>
         </View>
+
+        <Button label='Modifier vos information' action={goEditInfos}></Button>
       </View>
     </View>
   );

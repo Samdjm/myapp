@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { globalStyle } from "../../styles/GlobalStyle";
 import Cam from "../Pages/Cam/Cam";
+import EditInfos from "../Pages/editInfos/EditInfos";
 import Profil from "../Pages/Profil/Profil";
 
 const Stack = createStackNavigator();
@@ -24,6 +25,13 @@ export default function ProfilStack() {
         component={Cam}
         options={{
           title: "Prenez une photo",
+        }}
+      />
+      <Stack.Screen
+        name='editInfos'
+        component={EditInfos}
+        options={{
+          title: "Modifier vos informations",
         }}
       />
     </Stack.Navigator>
