@@ -2,8 +2,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
+import GlobalDrawer from "./Components/Drawers/GlobalDrawer";
 import Auth from "./Components/Pages/Auth/Auth";
-import ProfilStack from "./Components/Stacks/ProfilStack";
 import { UserContext } from "./contexts/UserContext";
 export default function App() {
   const fauxUser = { email: "john@doe.com", username: "John" };
@@ -12,7 +12,7 @@ export default function App() {
   return (
     <UserContext.Provider value={{ utilisateur: user, setUtilisateur: setUser }}>
       <View style={styles.container}>
-        <NavigationContainer>{user ? <ProfilStack /> : <Auth />}</NavigationContainer>
+        <NavigationContainer>{user ? <GlobalDrawer /> : <Auth />}</NavigationContainer>
         <StatusBar style='auto' />
       </View>
     </UserContext.Provider>
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
 //HOC: High Order Component
 
 // A voire:
-//Formik et Yup
-//Firebase
-//Nextjs
+//Formik et Yup: Formulaire et teste rapidement
+//Firebase: authentifications et Base de données
+//Nextjs: Framework react pour le SEO
 
-//Docker
+//Docker: Gestionnaires container (machines virtuelle)
