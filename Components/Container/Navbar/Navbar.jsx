@@ -3,12 +3,14 @@ import { AntDesign } from "@expo/vector-icons";
 import { globalStyle } from "../../../styles/GlobalStyle";
 import { useContext } from "react";
 import { UserContext } from "../../../contexts/UserContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../libs/request/firebase";
 const Navbar = (props) => {
   const { setUtilisateur } = useContext(UserContext);
   console.log(props);
   function logout() {
     //Enleve les cookies
-    setUtilisateur(null);
+    signOut(auth);
   }
 
   console.log(Platform);

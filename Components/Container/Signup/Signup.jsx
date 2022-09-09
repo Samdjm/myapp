@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import InputWithError from "../../UI/InputWithError/InputWithError";
 import Button from "../../UI/Button/Button";
 import { UserContext } from "../../../contexts/UserContext";
+import { signupUser } from "../../../libs/request/auth";
 export default function Signup() {
   const context = useContext(UserContext);
 
@@ -40,7 +41,7 @@ export default function Signup() {
     setConfirmPasswordError("");
   }
 
-  function signup() {
+  async function signup() {
     if (
       emailInput.includes("@") &&
       usernameInput.length >= 3 &&
@@ -51,7 +52,10 @@ export default function Signup() {
       //Envoyer les données a la backend
       //Recu JWT token
       //Decode JWT: {uid:xxxx, email:xxxx@xxx.com, username:xxxx, avatar:xxxx.png}
-      context.setUtilisateur({ email: emailInput, username: usernameInput });
+
+      const signedUpUser = await signupUser(emailInput, usernameInput, passwordInput);
+
+      //context.setUtilisateur(signedUpUser);
     } else {
       setEmailError(!emailInput.includes("@") ? "Email incorrect" : "");
 
