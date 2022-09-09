@@ -4,6 +4,8 @@ import Button from "../../UI/Button/Button";
 import InputWithError from "../../UI/InputWithError/InputWithError";
 import { AntDesign } from "@expo/vector-icons";
 import { globalStyle } from "../../../styles/GlobalStyle";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../libs/request/firebase";
 export default function Login() {
   const emailFromCookie = "sam@sam.com";
   //Etape 1: Les variables d'états pour les inputs et les erreurs:
@@ -25,11 +27,11 @@ export default function Login() {
   }
 
   //Etape 3: La fonction qui valide le formulaire:
-  function login() {
+  async function login() {
     //Tester les entrées de l'utilisateur:
     if (emailInput.includes("@") && passwordInput.length >= 6) {
       //Envoyer les données a la backend
-      alert("Inscription réussie! email: " + emailInput);
+      await signInWithEmailAndPassword(auth, emailInput, passwordInput);
     } else {
       setEmailError(!emailInput.includes("@") ? "Email incorrect!" : "");
       setPasswordError(passwordInput.length < 6 ? "Mot de passe trop court!" : "");

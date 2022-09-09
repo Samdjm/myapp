@@ -52,3 +52,6 @@ const styles = StyleSheet.create({
 //Nextjs: Framework react pour le SEO
 
 //Docker: Gestionnaires container (machines virtuelle)
+
+//Suite logique:
+//implementer la connexion
